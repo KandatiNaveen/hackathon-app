@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import "./forms.css";
 import cloud from "../images/bxs_cloud-upload.svg";
 import fill from "../images/bi_image-fill.svg";
@@ -6,10 +6,13 @@ import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
 import Header from "./Header";
+
 function EditForms() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const location = useLocation();
-  const challenge = location.state.challenge || {
+  const fileInputRef = useRef(null); // Use useRef to create a reference to the file input element
+
+  const challenge = location.state?.challenge || {
     title: "",
     startsIn: "",
     endDate: "",
@@ -19,11 +22,7 @@ function EditForms() {
     buttonLabel: "Participate Now"
   };
 
-  const index = location.state?.index || {}
-
-  console.log(index)
-
-  console.log(challenge)
+  const index = location.state?.index || {};
 
   const [formData, setFormData] = useState({
     title: challenge.title,
@@ -35,7 +34,7 @@ function EditForms() {
     buttonLabel: "Participate Now"
   });
 
-  const [imagePreview, setImagePreview] = useState("");
+  const [imagePreview, setImagePreview] = useState(challenge.image);
 
   let savedData = JSON.parse(localStorage.getItem("challenges")) || [];
 
@@ -48,9 +47,9 @@ function EditForms() {
     event.preventDefault();
     console.log("Submitted Form Data:", formData);
 
-    savedData[index] = formData
+    savedData[index] = formData;
     localStorage.setItem("challenges", JSON.stringify(savedData));
-    navigate("/")
+    navigate("/");
   };
 
   const handleImageUpload = (event) => {
@@ -61,23 +60,23 @@ function EditForms() {
         setImagePreview(reader.result);
         setFormData((prevFormData) => ({
           ...prevFormData,
-          image: reader.result,
+          image: reader.result, // Save the base64 image to formData
         }));
       };
-      reader.readAsDataURL(file);
+      reader.readAsDataURL(file); // Convert image to base64 format
     }
   };
 
-  const resetFileInput = () => {
-    const fileInput = document.getElementById("imageUpload");
-    if (fileInput) {
-      fileInput.value = "";
+  const handleChangeImageClick = () => {
+    // Trigger the click event using the ref to the input
+    if (fileInputRef.current) {
+      fileInputRef.current.click();
     }
   };
 
   return (
     <div>
-      <Header/>
+      <Header />
       <div className="form-wrapper">
         <form onSubmit={handleSubmit}>
           <div className="form-group">
@@ -141,14 +140,9 @@ function EditForms() {
                 <button
                   type="button"
                   className="upload-button"
-                  onClick={() => {
-                    document.getElementById("imageUpload").click();
-                    resetFileInput();
-                  }}
+                  onClick={handleChangeImageClick} // Use the function that triggers the ref
                 >
-                  <span
-                    style={{ display: "inline-flex", alignItems: "center" }}
-                  >
+                  <span style={{ display: "inline-flex", alignItems: "center" }}>
                     <img
                       src={fill}
                       alt="Change Icon"
@@ -164,6 +158,7 @@ function EditForms() {
                   type="file"
                   id="imageUpload"
                   name="image"
+                  ref={fileInputRef} // Use the ref to reference this input
                   accept="image/*"
                   style={{ display: "none" }}
                   onChange={handleImageUpload}
@@ -180,10 +175,7 @@ function EditForms() {
                     borderRadius: "5px",
                     cursor: "pointer",
                   }}
-                  onClick={() => {
-                    document.getElementById("imageUpload").click();
-                    resetFileInput();
-                  }}
+                  onClick={handleChangeImageClick} // Use the function that triggers the ref
                 >
                   <img
                     src={cloud}
@@ -213,9 +205,9 @@ function EditForms() {
               <option>Hard</option>
             </select>
           </div>
-            <button type="submit" className="submit-button">
-              Save changes
-            </button>
+          <button type="submit" className="submit-button">
+            Save changes
+          </button>
         </form>
       </div>
     </div>
