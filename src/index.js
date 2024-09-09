@@ -74,8 +74,11 @@ const challenges = [
     level:'Hard'
   }
 ];
-
-localStorage.setItem('challenges', JSON.stringify(challenges))
+const data = JSON.parse(localStorage.getItem('challenges'))
+if(!data){
+  console.log("data")
+   localStorage.setItem('challenges', JSON.stringify(challenges))
+}
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

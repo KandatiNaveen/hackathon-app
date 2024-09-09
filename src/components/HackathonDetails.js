@@ -3,7 +3,7 @@ import { Container, Typography, Button, Box } from "@mui/material";
 import "./HackathonDetails.css"
 import Timer from "./Timer";
 
-const Header = ({ challenge }) => {
+const HackathonDetails = ({ challenge }) => {
   return (
     <div className="container-header">
       <Typography variant="body1" className="start-time" sx={{ mt: "10px" }}>
@@ -22,4 +22,4 @@ const Header = ({ challenge }) => {
   );
 };
 
-export default Header;
+export default HackathonDetails;

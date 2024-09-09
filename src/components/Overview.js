@@ -3,16 +3,16 @@ import { Container, Box, Typography, Button, Divider } from '@mui/material';
 import './Overview.css';
 import { Link } from 'react-router-dom';
 
-const OverviewSection = ({ challenge }) => {
+const OverviewSection = ({ challenge, index }) => {
   
   return (
     <div className="overview-container">
       <Box className="overview-header">
         <Typography variant="h6" className="overview-title">
-          Overview
+          Hackathon
         </Typography>
         <Box className="header-buttons">
-        <Link to='/Hackathon/editforms'> <Button variant="contained" className="edit-btn">
+        <Link to='/Hackathon/editforms' state={{"challenge":challenge, "index":index}}> <Button variant="contained" className="edit-btn">
             Edit
           </Button>
           </Link>

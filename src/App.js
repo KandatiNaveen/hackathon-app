@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Route,  Routes } from 'react-router-dom';
 import Home from './components/Home';
 import ChallengeDetailsForm from './components/forms';
-import Overview from './components/Hackathon';
+import Hackathon from './components/Hackathon';
 import EditForms from "./components/editforms";
 
 export default function Appp(){
@@ -10,7 +10,7 @@ export default function Appp(){
         <Routes>
            <Route path="/" Component={Home} />
            <Route path="/forms" Component={ChallengeDetailsForm}/>
-           <Route path="/Hackathon" Component={Overview}/>
+           <Route path="/Hackathon" Component={Hackathon}/>
            <Route path="/Hackathon/editforms" Component={EditForms}/>
          
 

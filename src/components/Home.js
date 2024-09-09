@@ -272,7 +272,7 @@ function Home() {
                     pathname: "/Hackathon",
                     state: { message: "state" },
                   }}
-                  state={challenge}
+                  state={{"challenge":challenge, index: index}}
                 >
                   <button className="participate-button">
                     {challenge.buttonLabel}

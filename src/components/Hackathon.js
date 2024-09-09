@@ -1,30 +1,21 @@
 import OverviewSection from "./Overview";
-import Header from "./HackathonDetails";
+import HackathonDetails from "./HackathonDetails";
 import icon from "../images/icon.png";
 import { useLocation } from "react-router-dom";
+import Header from "./Header";
 
-function Overview() {
+function Hackathon() {
   const location = useLocation();
-  const challenge = location.state || {};
+  const challenge = location.state?.challenge || {};
+  const index = location.state?.index || {}
 
   return (
     <div>
-      <div
-        style={{
-          paddingLeft: "10%",
-          paddingRight: "10%",
-          flex: "start",
-          paddingTop: "10px",
-          paddingBottom: "10px",
-        }}
-      >
-        <img src={icon} alt="DPhi logo" className="logo" />
-      </div>
-
-      <Header challenge={challenge} />
-      <OverviewSection challenge={challenge} />
+      <Header/>
+      <HackathonDetails challenge={challenge} />
+      <OverviewSection challenge={challenge} index = {index} />
     </div>
   );
 }
 
-export default Overview;
+export default Hackathon;

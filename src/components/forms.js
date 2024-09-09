@@ -3,8 +3,10 @@ import "./forms.css";
 import cloud from "../images/bxs_cloud-upload.svg";
 import fill from "../images/bi_image-fill.svg";
 import { Link } from "react-router-dom";
-
+import { useNavigate } from 'react-router-dom';
+import Header from "./Header";
 function ChallengeDetailsForm() {
+  const navigate = useNavigate()
   const [formData, setFormData] = useState({
     title: "",
     startsIn: "",
@@ -26,11 +28,13 @@ function ChallengeDetailsForm() {
   };
 
   const handleSubmit = (event) => {
+    console.log("submitting")
     event.preventDefault();
     console.log("Submitted Form Data:", formData);
 
     savedData.push(formData);
     localStorage.setItem("challenges", JSON.stringify(savedData));
+    navigate("/")
   };
 
   const handleImageUpload = (event) => {
@@ -57,6 +61,7 @@ function ChallengeDetailsForm() {
 
   return (
     <div>
+      <Header/>
       <div className="form-wrapper">
         <form onSubmit={handleSubmit}>
           <div className="form-group">
@@ -193,12 +198,9 @@ function ChallengeDetailsForm() {
             </select>
           </div>
 
-          <Link to="/">
-            {" "}
             <button type="submit" className="submit-button">
               Create Challenge
             </button>
-          </Link>
         </form>
       </div>
     </div>

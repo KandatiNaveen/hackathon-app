@@ -3,17 +3,36 @@ import "./forms.css";
 import cloud from "../images/bxs_cloud-upload.svg";
 import fill from "../images/bi_image-fill.svg";
 import { Link } from "react-router-dom";
-
+import { useLocation } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
+import Header from "./Header";
 function EditForms() {
-  const [formData, setFormData] = useState({
+  const navigate = useNavigate()
+  const location = useLocation();
+  const challenge = location.state.challenge || {
     title: "",
     startsIn: "",
     endDate: "",
     description: "",
     image: "",
     levelType: "Easy",
-    buttonLabel: "Participate Now",
-    status: "Upcoming",
+    buttonLabel: "Participate Now"
+  };
+
+  const index = location.state?.index || {}
+
+  console.log(index)
+
+  console.log(challenge)
+
+  const [formData, setFormData] = useState({
+    title: challenge.title,
+    startsIn: challenge.startsIn,
+    endDate: challenge.endDate,
+    description: challenge.description,
+    image: challenge.image,
+    levelType: challenge.levelType,
+    buttonLabel: "Participate Now"
   });
 
   const [imagePreview, setImagePreview] = useState("");
@@ -29,8 +48,9 @@ function EditForms() {
     event.preventDefault();
     console.log("Submitted Form Data:", formData);
 
-    savedData.push(formData);
+    savedData[index] = formData
     localStorage.setItem("challenges", JSON.stringify(savedData));
+    navigate("/")
   };
 
   const handleImageUpload = (event) => {
@@ -57,6 +77,7 @@ function EditForms() {
 
   return (
     <div>
+      <Header/>
       <div className="form-wrapper">
         <form onSubmit={handleSubmit}>
           <div className="form-group">
@@ -192,12 +213,9 @@ function EditForms() {
               <option>Hard</option>
             </select>
           </div>
-
-          <Link to="/">
             <button type="submit" className="submit-button">
               Save changes
             </button>
-          </Link>
         </form>
       </div>
     </div>
