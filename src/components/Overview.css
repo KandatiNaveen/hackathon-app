@@ -1,0 +1,55 @@
+.overview-container {
+    background-color: #ffffff; 
+  }
+  
+  .overview-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10%;
+    padding-right: 10%;
+  }
+  
+  .overview-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #333333;
+    border-bottom: 4px solid #00b167; 
+    padding-bottom: 4px;
+    
+  }
+  
+  .header-buttons {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .edit-btn {
+    background-color: #00b167;
+    color: #ffffff;
+  }
+  
+  .delete-btn {
+    color: #ff0000;
+    border-color: #ff0000;
+  }
+  
+  .divider {
+    margin: 1rem 0;
+    background-color: #e0e0e0;
+  }
+  
+  .overview-content {
+    padding-top: 30px;
+    font-size: 1rem;
+    color: #555555;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    padding-left: 10%;
+    padding-right: 10%;
+  }
+  

@@ -1,0 +1,62 @@
+.form-wrapper {
+  max-width: 600px;
+  margin: 30px auto;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+input[type="text"],
+input[type="date"],
+textarea,
+select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+textarea {
+  height: 100px;
+  resize: none;
+}
+
+.upload-button {
+  background-color: #e9ecef;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  display: flex;
+}
+
+.upload-icon {
+  font-size: 16px;
+}
+
+.submit-button {
+  background-color: green;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  display: block;
+  width: 75%;
+  margin-left: 15%;
+  margin-top: 20px;
+  border-radius: 4px;
+}
+
+select {
+  cursor: pointer;
+}
